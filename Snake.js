@@ -4,56 +4,40 @@ var food;
 var obstacle;
 var playfieldW = 600;
 var playfieldH = 640;
-var check = 0;
-let pg;
-let pg1;
-let pg2;
-let scorepg;
+var check = 'start';
+let startpg, endpg, scorepg;
 function setup() {
   createCanvas(playfieldW, playfieldH);
-  pg = createGraphics(playfieldW, playfieldH);
-  pg1 = createGraphics(playfieldW,playfieldH);
-  scorepg = createGraphics(600,640);
+  startpg = createGraphics(playfieldW, playfieldH);
+  endpg = createGraphics(playfieldW,playfieldH);
+  scorepg = createGraphics(600,40);
   background(51);
   s = new Snake();
   frameRate (10);
   foodLocatrion(); 
   ObstacleLocatrion();
-}
-function Check(){
-  check = 2;
+  textFont("Georgia");
 }
 function draw() {
-  if(check == 0){
-    pg.fill(255,0,0);
-    image(pg, 0, 0);
+  if(check == 'start'){
+    image(startpg, 0, 0);
     for(var i = 0; i < 15 ; i++){
       for(var j = 0; j < 16 ; j++){
         rect(0+40*i,0+40*j,40,40);
       }
     }
-    textFont("Georgia");
     textSize(56);
     text("Press SPACE to start",42,520);
   }
-  else if(check == 1){
-    pg1.background(0);
-    fill(255);
-    noStroke();
-    image(pg1,0,0);
-    for(var i = 0; i < 15 ; i++){
-      for(var j = 0; j < 16 ; j++){
-        rect(0+40*i,0+40*j,40,40);
-      }
-    }
+  else if(check == 'End'){
+    endpg.background(0);
+    image(endpg,0,0);
     fill('red');
-    textFont("Georgia");
     textSize(56);
     text("Game Over",160,320);
   }
-  else{
-    background(51);
-    scoreboard(); 
+  else if(check == 'playing'){
+    background(51); 
     if (s.eatf(food)){ foodLocatrion(); }
     if (s.eato(obstacle)) { ObstacleLocatrion(); }
     s.death(); 
@@ -63,6 +47,7 @@ function draw() {
     ellipse(food.x,food.y, scl, scl); 
     fill (0,255,0); 
     ellipse(obstacle.x,obstacle.y, scl, scl);
+    scoreboard(); 
   }
 }
 function foodLocatrion() { 
@@ -94,15 +79,14 @@ function ObstacleLocatrion() {
   }
 }
 function scoreboard() {  
-  fill(0);
-  rect(0, 600, 600, 40);
-  fill(255);
-  textFont("Georgia");
+  scorepg.background(0);
+  image(scorepg,0,600);
   textSize(18);
+  fill(255);
   text("Score: ", 10, 625);
-  text("Highscore: ", 450, 625)
+  text("Highscore: ", 450, 625);
   text(s.score, 70, 625);
-  text(s.highscore, 540, 625)
+  text(s.highscore, 540, 625);
 }
 
 function Snake() {
@@ -176,9 +160,9 @@ function Snake() {
     this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
-    this.score = 0;
+    this.score = 1;
     this.tail = [];
-    check = 1;
+    check = 'End';
   }
 }
 function keyPressed() { //키보드 인식 , reset 키 
@@ -191,6 +175,6 @@ function keyPressed() { //키보드 인식 , reset 키
   }else if (keyCode === LEFT_ARROW) {
       s.dir (-1, 0);
   }else if (key == ' '){
-    Check();
+    check = 'playing';
   }
 }
