@@ -21,11 +21,15 @@ function setup() {
 function draw() {
   if(check == 'start'){
     image(startpg, 0, 0);
+    fill(255);
     for(var i = 0; i < 15 ; i++){
       for(var j = 0; j < 16 ; j++){
         rect(0+40*i,0+40*j,40,40);
       }
     }
+    fill('red');
+    textSize(80);
+    text("Snake Game",80,240);
     textSize(56);
     text("Press SPACE to start",42,520);
   }
