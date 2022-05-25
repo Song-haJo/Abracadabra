@@ -1,4 +1,4 @@
-// Direction과 Snake를 합친 코드입니다. 
+// Code.js에서 수정한 코드입니다. 
 // 길이가 3 이상일 때 가던 방향의 반대 방향으로 가거나 벽에 부딪치면 죽는 판정을 빼고 먹으면 죽는 먹이를 추가하는 게 게임을 플레이하기에 수월해 보입니다. <- 수정 완료
 // 손이 카메라에서 벗어나기가 쉬워서 카메라 안에 들어오는지 확인할 수 있도록 게임 화면의 왼쪽이나 오른쪽에 비디오를 넣는 것도 좋아 보입니다.
 let handpose;
@@ -12,11 +12,12 @@ var obstacle;
 var playfield = 600;
 
 //----------------------------------------------------s
-let bgPic;
-let url = "https://thumbs.dreamstime.com/b/sand-under-sea-abstract-marine-design-template-blue-deep-ocean-180905891.jpg";
+let bgPic, shark;
+let bgUrl = "https://thumbs.dreamstime.com/b/sand-under-sea-abstract-marine-design-template-blue-deep-ocean-180905891.jpg";
 
 function preload() {
-  bgPic = loadImage(url);
+  bgPic = loadImage(bgUrl);
+  shark = loadImage("shark.png")
 }
 //----------------------------------------------------e
 
@@ -47,13 +48,13 @@ function draw() {
     image(bgPic, 0, 0);
 //----------------------------------------------------e
     scoreboard();            // scoreboard 함수 실행
-    if (s.eatf(food)) {      // Snake 함수 안의 eat 함수가 true 일 때 실행
+    if (s.eatf(food)) {      // Snake 함수 안의 eat 함수가 true일 때 실행
         foodLocatrion();     // foodLocatrion 함수 실행
     }
-    if (s.eato(obstacle)) {  // Snake 함수 안의 eat 함수가 true 일 때 실행
+    if (s.eato(obstacle)) {  // Snake 함수 안의 eat 함수가 true일 때 실행
         ObstacleLocatrion(); // foodLocatrion 함수 실행
     }
-    // s.death(); // Snake 함수 안의 death 함수 실행
+    //s.death();   // Snake 함수 안의 death 함수 실행
     s.update();   // Snake 함수 안의 update 함수 실행
     s.show();     // Snake 함수 안의 show 함수 실행
     fill (255,0,100); 
@@ -114,8 +115,8 @@ function ObstacleLocatrion() {
         }
     }
 }
-// scoreboard
-function scoreboard() { //점수판 
+
+function scoreboard() { // 점수판(scoreboard)
     fill("#ffe7c0");
     rect(0, 600, 600, 40);
     fill("#ff8000");
@@ -147,11 +148,11 @@ function Snake() {
         if (d < 1) {                            // d<1 : 뱀이 음식을 먹었을 때,
             this.total++;
             this.score++;
-            text(this.score, 70, 625);          // this.score 값을 (70,625) 위치에 표시
+            text(this.score, 70, 625);          // this.score 값을 (70, 625) 위치에 표시
             if (this.score > this.highscore) {  // if(조건) 조건이 참일 때 실행
                 this.highscore = this.score; 
             }
-            text(this.highscore, 540, 625);     // this.highscore 값을 (540,625) 위치에 표시
+            text(this.highscore, 540, 625);     // this.highscore 값을 (540, 625) 위치에 표시
             return true;  // true 반환
         } else {
             return false; // false 반환
@@ -196,11 +197,12 @@ function Snake() {
     }
     // 함수 생성, 뱀 형태 만들기 
     this.show = function(){
-        fill(255);
+        //fill(255);
+        image(shark,this.x, this.y, scl*3, scl*2);
         for (var i = 0; i < this.tail.length; i++) {
             ellipse(this.tail[i].x, this.tail[i].y, scl, scl);
         }
-        ellipse(this.x, this.y, scl, scl);
+        //ellipse(this.x, this.y, scl, scl);
     }
     this.reset = function(){ // Reset을 위한 함수를 따로 생성. 첫 시작값과 똑같이 감.
         this.x =10;
