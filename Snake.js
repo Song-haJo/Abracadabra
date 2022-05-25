@@ -2,10 +2,15 @@ var s;
 var scl = 20;
 var food;
 var obstacle;
+var obstacle1;
+var obstacle2;
+var obstacle3;
 var playfieldW = 600;
 var playfieldH = 640;
 var check = 'start';
 let startpg, endpg, scorepg;
+var count=1;
+var d1
 function setup() {
   createCanvas(playfieldW, playfieldH);
   startpg = createGraphics(playfieldW, playfieldH);
@@ -52,6 +57,24 @@ function draw() {
     fill (0,255,0); 
     ellipse(obstacle.x,obstacle.y, scl, scl);
     scoreboard(); 
+    if(count ==5)
+      ObstacleLocatrion1();
+    if(count >5){
+    if (s.eato(obstacle1)) { ObstacleLocatrion1(); }
+    fill (0,255,0); 
+    ellipse(obstacle1.x,obstacle1.y, scl, scl);}
+    if(count ==10)
+      ObstacleLocatrion2();
+    if(count >10){
+    if (s.eato(obstacle2)) { ObstacleLocatrion2(); }
+    fill (0,255,0); 
+    ellipse(obstacle2.x,obstacle2.y, scl, scl);}
+    if(count ==20)
+      ObstacleLocatrion3();
+    if(count >20){
+    if (s.eato(obstacle3)) { ObstacleLocatrion3(); }
+    fill (0,255,0); 
+    ellipse(obstacle3.x,obstacle3.y, scl, scl);}
   }
 }
 function foodLocatrion() { 
@@ -67,6 +90,29 @@ function foodLocatrion() {
       foodLocatrion();
     }
   }
+  if(count>1){
+  d1 = dist(obstacle.x, obstacle.y, food.x, food.y);
+  if(d1<20){
+    foodLocatrion();
+  }}
+  if(count>5){
+  d1 = dist(obstacle1.x, obstacle1.y, food.x, food.y);
+  if(d1<20){
+    foodLocatrion();
+  }
+  }
+  if(count>10){
+  d1 = dist(obstacle2.x, obstacle2.y, food.x, food.y);
+  if(d1<20){
+    foodLocatrion();
+  }
+  }
+  if(count>20){
+  d1 = dist(obstacle3.x, obstacle3.y, food.x, food.y);
+  if(d1<20){
+    foodLocatrion();
+  }
+  }
 }
 function ObstacleLocatrion() { 
   var rows = floor(playfieldW/scl); 
@@ -80,6 +126,88 @@ function ObstacleLocatrion() {
     if (d < 20) {
       ObstacleLocatrion();
     }
+  }
+  d1 = dist(obstacle.x, obstacle.y, food.x, food.y);
+  if(d1<20){
+    ObstacleLocatrion();
+  }
+}
+function ObstacleLocatrion1() { 
+  var rows = floor(playfieldW/scl); 
+  cols = floor(random(30))*scl;
+  rows = floor(random(30))*scl;
+  obstacle1 = createVector(10, 10);
+  obstacle1.add(cols,rows); 
+  for (var i = 0; i < s.tail.length; i++) { 
+    var pos = s.tail[i];
+    var d = dist(obstacle1.x, obstacle1.y, pos.x, pos.y);
+    if (d < 20) {
+      ObstacleLocatrion1();
+    }
+  }
+  d1 = dist(obstacle1.x, obstacle1.y, food.x, food.y);
+  if(d1<20){
+    ObstacleLocatrion1();
+  }
+  d1 = dist(obstacle1.x, obstacle1.y, obstacle.x, obstacle.y);
+  if(d1<20){
+    ObstacleLocatrion1();
+  }
+}
+function ObstacleLocatrion2() { 
+  var rows = floor(playfieldW/scl); 
+  cols = floor(random(30))*scl;
+  rows = floor(random(30))*scl;
+  obstacle2 = createVector(10, 10);
+  obstacle2.add(cols,rows); 
+  for (var i = 0; i < s.tail.length; i++) { 
+    var pos = s.tail[i];
+    var d = dist(obstacle2.x, obstacle2.y, pos.x, pos.y);
+    if (d < 20) {
+      ObstacleLocatrion2();
+    }
+  }
+  d1 = dist(obstacle2.x, obstacle2.y, food.x, food.y);
+  if(d1<20){
+    ObstacleLocatrion2();
+  }
+  d1 = dist(obstacle2.x, obstacle2.y, obstacle.x, obstacle.y);
+  if(d1<20){
+    ObstacleLocatrion2();
+  }
+  d1 = dist(obstacle2.x, obstacle2.y, obstacle1.x, obstacle1.y);
+  if(d1<20){
+    ObstacleLocatrion2();
+  }
+}
+function ObstacleLocatrion3() { 
+  var rows = floor(playfieldW/scl); 
+  cols = floor(random(30))*scl;
+  rows = floor(random(30))*scl;
+  obstacle3 = createVector(10, 10);
+  obstacle3.add(cols,rows); 
+  for (var i = 0; i < s.tail.length; i++) { 
+    var pos = s.tail[i];
+    var d = dist(obstacle3.x, obstacle3.y, pos.x, pos.y);
+    if (d < 20) {
+      ObstacleLocatrion3();
+    }
+  }
+  d1 = dist(obstacle3.x, obstacle3.y, food.x, food.y);
+  if(d1<20){
+    ObstacleLocatrion3();
+  }
+  d1 = dist(obstacle3.x, obstacle3.y, obstacle.x, obstacle.y);
+  if(d1<20){
+    ObstacleLocatrion3();
+  }
+  d1 = dist(obstacle3.x, obstacle3.y, obstacle1.x, obstacle1.y);
+  if(d1<20){
+    ObstacleLocatrion3();
+  }
+  d1 = dist(obstacle3.x, obstacle3.y, obstacle2.x, obstacle2.y);
+  if(d1<20){
+    ObstacleLocatrion3();
   }
 }
 function scoreboard() {  
@@ -112,6 +240,7 @@ function Snake() {
     if (d < 1) { //d<1 : 뱀이 음식을 먹었을 때,
       this.total++;
       this.score++;
+      count ++;
       text(this.score, 70, 625); // this.score 값을 (70,625) 위치에 표시
       if (this.score > this.highscore) { // if(조건) 조건이 참일 때 실행
         this.highscore = this.score; 
@@ -166,6 +295,7 @@ function Snake() {
     this.total = 0;
     this.score = 1;
     this.tail = [];
+    count=0;
     check = 'End';
   }
 }
