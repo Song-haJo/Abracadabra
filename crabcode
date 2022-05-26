@@ -29,7 +29,8 @@ function preload() {
 function setup() {
   createCanvas(playfieldW, playfieldH);
   video = createCapture(VIDEO);
-  video.hide();
+  video.position(600,-50);
+  video.size(350,350);
   handpose = ml5.handpose(video);
   handpose.on("predict", gotResult);
   startpg = createGraphics(playfieldW, playfieldH);
@@ -38,7 +39,7 @@ function setup() {
   //background(51);
   //image(bgPic, 0, 0);
   s = new Snake();
-  frameRate (10);
+  frameRate (5);
   foodLocatrion(); 
   ObstacleLocatrion();
   textFont("Georgia");
@@ -333,8 +334,8 @@ function Snake() {
     image(crab, this.x, this.y, scl, scl);  
   }
   this.reset = function(){
-    this.x = 0;
-    this.y = 0;
+    this.x = 300;
+    this.y = 300;
     this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
