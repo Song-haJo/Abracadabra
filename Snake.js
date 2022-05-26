@@ -56,6 +56,9 @@ function draw() {
     fill('red');
     textSize(56);
     text("Game Over",160,320);
+    textSize(40);
+    text("Score: ", 160, 400);
+    text(count+1, 400, 400);
   }
   else if(check == 'playing'){
     //background(51);
@@ -323,7 +326,6 @@ function Snake() {
     this.total = 0;
     this.score = 1;
     this.tail = [];
-    count=0;
     check = 'End';
   }
 }
@@ -337,6 +339,7 @@ function keyPressed() { //키보드 인식 , reset 키
   }else if (keyCode === LEFT_ARROW) {
       s.dir (-1, 0);
   }else if (key == ' '){
+    count=0;
     check = 'playing';
   }
 }
