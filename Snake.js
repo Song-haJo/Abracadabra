@@ -1,5 +1,5 @@
 var s;
-var scl = 20;
+var scl = 30;
 var food;
 var obstacle;
 var obstacle1;
@@ -101,8 +101,8 @@ function draw() {
 function foodLocatrion() { 
   var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
-  cols = floor(random(30))*scl;
-  rows = floor(random(30))*scl;
+  cols = floor(random(20))*scl;
+  rows = floor(random(20))*scl;
   food = createVector(0, 0);
   food.add(cols,rows);
   for (var i = 0; i < s.tail.length; i++) { 
@@ -139,8 +139,8 @@ function foodLocatrion() {
 function ObstacleLocatrion() {
   var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
-  cols = floor(random(30))*scl;
-  rows = floor(random(30))*scl;
+  cols = floor(random(20))*scl;
+  rows = floor(random(20))*scl;
   obstacle = createVector(0, 0);
   obstacle.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
@@ -158,8 +158,8 @@ function ObstacleLocatrion() {
 function ObstacleLocatrion1() { 
   var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
-  cols = floor(random(30))*scl;
-  rows = floor(random(30))*scl;
+  cols = floor(random(20))*scl;
+  rows = floor(random(20))*scl;
   obstacle1 = createVector(0, 0);
   obstacle1.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
@@ -181,8 +181,8 @@ function ObstacleLocatrion1() {
 function ObstacleLocatrion2() { 
   var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
-  cols = floor(random(30))*scl;
-  rows = floor(random(30))*scl;
+  cols = floor(random(20))*scl;
+  rows = floor(random(20))*scl;
   obstacle2 = createVector(0, 0);
   obstacle2.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
@@ -208,8 +208,8 @@ function ObstacleLocatrion2() {
 function ObstacleLocatrion3() { 
   var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
-  cols = floor(random(30))*scl;
-  rows = floor(random(30))*scl;
+  cols = floor(random(20))*scl;
+  rows = floor(random(20))*scl;
   obstacle3 = createVector(0,0);
   obstacle3.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
