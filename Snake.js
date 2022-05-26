@@ -11,12 +11,24 @@ var check = 'start';
 let startpg, endpg, scorepg;
 var count=1;
 var d1
+
+let bgPic, crab, shark, burger;
+let bgUrl = "https://thumbs.dreamstime.com/b/sand-under-sea-abstract-marine-design-template-blue-deep-ocean-180905891.jpg";
+
+function preload() {
+  bgPic = loadImage(bgUrl);
+  shark = loadImage("shark.png");
+  crab = loadImage("crab.png");
+  burger = loadImage("burger.png");
+}
+
 function setup() {
   createCanvas(playfieldW, playfieldH);
   startpg = createGraphics(playfieldW, playfieldH);
   endpg = createGraphics(playfieldW,playfieldH);
   scorepg = createGraphics(600,40);
-  background(51);
+  //background(51);
+  //image(bgPic, 0, 0);
   s = new Snake();
   frameRate (10);
   foodLocatrion(); 
@@ -46,167 +58,181 @@ function draw() {
     text("Game Over",160,320);
   }
   else if(check == 'playing'){
-    background(51); 
+    //background(51);
+    image(bgPic, 0, 0);
     if (s.eatf(food)){ foodLocatrion(); }
     if (s.eato(obstacle)) { ObstacleLocatrion(); }
     s.death(); 
     s.update(); 
     s.show(); 
-    fill (255,0,100); 
-    ellipse(food.x,food.y, scl, scl); 
-    fill (0,255,0); 
-    ellipse(obstacle.x,obstacle.y, scl, scl);
+    //fill (255,0,100); 
+    //ellipse(food.x,food.y, scl, scl);
+    image(burger, food.x, food.y, scl, scl);
+    //fill (0,255,0); 
+    //ellipse(obstacle.x,obstacle.y, scl, scl);
+    image(shark, obstacle.x, obstacle.y, scl, scl);
     scoreboard(); 
     if(count ==5)
       ObstacleLocatrion1();
     if(count >5){
     if (s.eato(obstacle1)) { ObstacleLocatrion1(); }
-    fill (0,255,0); 
-    ellipse(obstacle1.x,obstacle1.y, scl, scl);}
+    //fill (0,255,0); 
+    //ellipse(obstacle1.x,obstacle1.y, scl, scl);
+      image(shark, obstacle1.x, obstacle1.y, scl, scl);
+    }
     if(count ==10)
       ObstacleLocatrion2();
     if(count >10){
     if (s.eato(obstacle2)) { ObstacleLocatrion2(); }
-    fill (0,255,0); 
-    ellipse(obstacle2.x,obstacle2.y, scl, scl);}
+    //fill (0,255,0); 
+    //ellipse(obstacle2.x,obstacle2.y, scl, scl);
+      image(shark, obstacle2.x, obstacle2.y, scl, scl);
+    }
     if(count ==20)
       ObstacleLocatrion3();
     if(count >20){
     if (s.eato(obstacle3)) { ObstacleLocatrion3(); }
-    fill (0,255,0); 
-    ellipse(obstacle3.x,obstacle3.y, scl, scl);}
+    //fill (0,255,0); 
+    //ellipse(obstacle3.x,obstacle3.y, scl, scl);
+      image(shark, obstacle3.x, obstacle3.y, scl, scl);
+    }
   }
 }
 function foodLocatrion() { 
+  var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
   cols = floor(random(30))*scl;
   rows = floor(random(30))*scl;
-  food = createVector(10, 10);
+  food = createVector(0, 0);
   food.add(cols,rows);
   for (var i = 0; i < s.tail.length; i++) { 
     var pos = s.tail[i];
     var d = dist(food.x, food.y, pos.x, pos.y);
-    if (d < 20) {
+    if (d < 1) {
       foodLocatrion();
     }
   }
   if(count>1){
   d1 = dist(obstacle.x, obstacle.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     foodLocatrion();
   }}
   if(count>5){
   d1 = dist(obstacle1.x, obstacle1.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     foodLocatrion();
   }
   }
   if(count>10){
   d1 = dist(obstacle2.x, obstacle2.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     foodLocatrion();
   }
   }
   if(count>20){
   d1 = dist(obstacle3.x, obstacle3.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     foodLocatrion();
   }
   }
 }
-function ObstacleLocatrion() { 
+function ObstacleLocatrion() {
+  var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
   cols = floor(random(30))*scl;
   rows = floor(random(30))*scl;
-  obstacle = createVector(10, 10);
+  obstacle = createVector(0, 0);
   obstacle.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
     var pos = s.tail[i];
     var d = dist(obstacle.x, obstacle.y, pos.x, pos.y);
-    if (d < 20) {
+    if (d < 1) {
       ObstacleLocatrion();
     }
   }
   d1 = dist(obstacle.x, obstacle.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion();
   }
 }
 function ObstacleLocatrion1() { 
+  var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
   cols = floor(random(30))*scl;
   rows = floor(random(30))*scl;
-  obstacle1 = createVector(10, 10);
+  obstacle1 = createVector(0, 0);
   obstacle1.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
     var pos = s.tail[i];
     var d = dist(obstacle1.x, obstacle1.y, pos.x, pos.y);
-    if (d < 20) {
+    if (d < 1) {
       ObstacleLocatrion1();
     }
   }
   d1 = dist(obstacle1.x, obstacle1.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion1();
   }
   d1 = dist(obstacle1.x, obstacle1.y, obstacle.x, obstacle.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion1();
   }
 }
 function ObstacleLocatrion2() { 
+  var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
   cols = floor(random(30))*scl;
   rows = floor(random(30))*scl;
-  obstacle2 = createVector(10, 10);
+  obstacle2 = createVector(0, 0);
   obstacle2.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
     var pos = s.tail[i];
     var d = dist(obstacle2.x, obstacle2.y, pos.x, pos.y);
-    if (d < 20) {
+    if (d < 1) {
       ObstacleLocatrion2();
     }
   }
   d1 = dist(obstacle2.x, obstacle2.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion2();
   }
   d1 = dist(obstacle2.x, obstacle2.y, obstacle.x, obstacle.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion2();
   }
   d1 = dist(obstacle2.x, obstacle2.y, obstacle1.x, obstacle1.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion2();
   }
 }
 function ObstacleLocatrion3() { 
+  var cols = floor(playfieldW/scl); 
   var rows = floor(playfieldW/scl); 
   cols = floor(random(30))*scl;
   rows = floor(random(30))*scl;
-  obstacle3 = createVector(10, 10);
+  obstacle3 = createVector(0,0);
   obstacle3.add(cols,rows); 
   for (var i = 0; i < s.tail.length; i++) { 
     var pos = s.tail[i];
     var d = dist(obstacle3.x, obstacle3.y, pos.x, pos.y);
-    if (d < 20) {
+    if (d < 1) {
       ObstacleLocatrion3();
     }
   }
   d1 = dist(obstacle3.x, obstacle3.y, food.x, food.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion3();
   }
   d1 = dist(obstacle3.x, obstacle3.y, obstacle.x, obstacle.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion3();
   }
   d1 = dist(obstacle3.x, obstacle3.y, obstacle1.x, obstacle1.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion3();
   }
   d1 = dist(obstacle3.x, obstacle3.y, obstacle2.x, obstacle2.y);
-  if(d1<20){
+  if(d1<1){
     ObstacleLocatrion3();
   }
 }
@@ -222,8 +248,8 @@ function scoreboard() {
 }
 
 function Snake() {
-  this.x =10; // 시작 좌표값이 사각형과는 다르게 10 이 되어야 기존 사각형에서 0,0 이던 값에서 출발한다. 아닐 경우 원이 잘려서 시작해서 픽셀이 깨져서 나온다.
-  this.y =10; // 이하동문
+  this.x =0; // 시작 좌표값이 사각형과는 다르게 10 이 되어야 기존 사각형에서 0,0 이던 값에서 출발한다. 아닐 경우 원이 잘려서 시작해서 픽셀이 깨져서 나온다.
+  this.y =0; // 이하동문
   this.xspeed = 1;
   this.yspeed = 0;
   this.total = 0;
@@ -262,7 +288,7 @@ function Snake() {
     }
 }
   this.death = function() { 
-    if(this.x<10||this.x>590||this.y<10||this.y>590){
+    if(this.x<0||this.x>580||this.y<0||this.y>580){
       this.reset();
     }
   }
@@ -276,20 +302,22 @@ function Snake() {
     this.tail[this.total-1] = createVector(this.x, this.y);
     this.x = this.x + this.xspeed*scl;
     this.y = this.y + this.yspeed*scl;
-    this.x = constrain(this.x, scl/2-20, playfieldW-scl/2+20);
-    this.y = constrain(this.y, scl/2-20, playfieldW-scl/2+20);
+    this.x = constrain(this.x, -scl, playfieldW);
+    this.y = constrain(this.y, -scl, playfieldW);
   }
  //함수 생성, 뱀 형태 만들기 
   this.show = function(){
-    fill(255);
+    //fill(255);
     for (var i = 0; i < this.tail.length; i++) {
-        ellipse(this.tail[i].x, this.tail[i].y, scl, scl);
+        //ellipse(this.tail[i].x, this.tail[i].y, scl, scl);
+      image(crab, this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    ellipse(this.x, this.y, scl, scl);
+    //ellipse(this.x, this.y, scl, scl);
+    image(crab, this.x, this.y, scl, scl);  
   }
   this.reset = function(){
-    this.x = 30;
-    this.y = 30;
+    this.x = 0;
+    this.y = 0;
     this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
