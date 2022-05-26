@@ -13,7 +13,7 @@ var count=1;
 var d1
 
 let bgPic, crab, shark, burger;
-let bgUrl = "https://thumbs.dreamstime.com/b/sand-under-sea-abstract-marine-design-template-blue-deep-ocean-180905891.jpg";
+let bgUrl = "https://cdn.pixabay.com/photo/2017/08/09/18/23/underwater-2615376_960_720.jpg";
 
 function preload() {
   bgPic = loadImage(bgUrl);
@@ -62,7 +62,7 @@ function draw() {
   }
   else if(check == 'playing'){
     //background(51);
-    image(bgPic, 0, 0);
+    image(bgPic, 0, 0,600,640);
     if (s.eatf(food)){ foodLocatrion(); }
     if (s.eato(obstacle)) { ObstacleLocatrion(); }
     s.death(); 
@@ -338,8 +338,13 @@ function keyPressed() { //키보드 인식 , reset 키
       s.dir (1, 0);
   }else if (keyCode === LEFT_ARROW) {
       s.dir (-1, 0);
-  }else if (key == ' '){
-    count=0;
-    check = 'playing';
+  }
+  if(check == 'start'||check == 'End'){
+    if(key == ' '){
+      count=0;
+      check = 'playing';
+      foodLocatrion();
+      ObstacleLocatrion();
+    }
   }
 }
