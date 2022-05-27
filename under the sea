@@ -17,7 +17,7 @@ let startpg, endpg, scorepg;
 var count=1;
 var d1
 
-let bgPic, crab, shark, burger, how;
+let bgPic, crab, shark, burger, how, end;
 let startbg;
 let bgUrl = "https://cdn.pixabay.com/photo/2017/08/09/18/23/underwater-2615376_960_720.jpg";
 
@@ -28,6 +28,7 @@ function preload() {
   crab = loadImage("crab.png");
   burger = loadImage("burger.png");
   how = loadImage("how.png");
+  end = loadImage("gravestone.png")
 }
 
 function setup() {
@@ -45,7 +46,7 @@ function setup() {
   frameRate (8);
   foodLocatrion(); 
   ObstacleLocatrion();
-  textFont("Georgia");
+  textFont("Helvetica");
 }
 
 function gotResult(results){
@@ -68,15 +69,25 @@ function draw() {
     }
   }
   else if(check == 'End'){
-    endpg.background(0);
-    image(endpg,0,0);
-    fill('red');
-    textSize(56);
-    text("Game Over",160,320);
-    textSize(40);
-    text("Score: ", 160, 400);
-    text(count+1, 400, 400);
-    
+    //endpg.background(0);
+    //image(endpg,0,0);
+    image(end,50,50,500,500);
+    /*fill('black');
+    textSize(30);
+    text("Highscore: ",150,180);
+    text(s.highscore,250,180);
+    text("Score: ",150,210);
+    text(count+1, 250, 210);*/
+    if(mouseX>143&&mouseX<298&&mouseY>452&&mouseY<484){
+      if(mouseIsPressed){
+        check = 'start';
+      }
+    }
+    if(mouseX>315&&mouseX<469&&mouseY>452&&mouseY<484){
+      if(mouseIsPressed){
+        check = 'playing';
+      }
+    }
   }
   else if(check == 'playing'){
     drawKeypoints();
