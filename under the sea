@@ -72,12 +72,10 @@ function draw() {
     //endpg.background(0);
     //image(endpg,0,0);
     image(end,50,50,500,500);
-    /*fill('black');
-    textSize(30);
-    text("Highscore: ",150,180);
-    text(s.highscore,250,180);
-    text("Score: ",150,210);
-    text(count+1, 250, 210);*/
+    fill(0);
+    rect(65,610,30,40);
+    fill(255);
+    text(count, 70,625);
     if(mouseX>143&&mouseX<298&&mouseY>452&&mouseY<484){
       if(mouseIsPressed){
         check = 'start';
