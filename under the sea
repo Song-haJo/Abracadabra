@@ -14,7 +14,7 @@ var playfieldW = 600;
 var playfieldH = 640;
 var check = 'start';
 let startpg, endpg, scorepg;
-var count=1;
+var count=0;
 var d1
 
 let bgPic, crab, shark, burger, how, end;
@@ -59,11 +59,13 @@ function draw() {
     image(startbg, 0, 0,600,640);
     if(mouseX>350&&mouseX<570&&mouseY>246&&mouseY<295){
       if(mouseIsPressed){
+        count=0;
         check = 'playing';
       }
     }
     if(mouseX>350&&mouseX<570&&mouseY>330&&mouseY<380){
       if(mouseIsPressed){
+        count=0;
         check = 'How';
       }
     }
@@ -75,14 +77,16 @@ function draw() {
     fill(0);
     rect(65,610,30,40);
     fill(255);
-    text(count, 70,625);
+    text(count+1, 70,625);
     if(mouseX>143&&mouseX<298&&mouseY>452&&mouseY<484){
       if(mouseIsPressed){
+        count=0;
         check = 'start';
       }
     }
     if(mouseX>315&&mouseX<469&&mouseY>452&&mouseY<484){
       if(mouseIsPressed){
+        count=0;
         check = 'playing';
       }
     }
@@ -133,6 +137,7 @@ function draw() {
     image(how, 0, 0,600,640);
     if(mouseX>313&&mouseX<480&&mouseY>398&&mouseY<442){
       if(mouseIsPressed){
+        count=0;
         check = 'playing';
       }
     }
