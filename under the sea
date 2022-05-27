@@ -8,7 +8,7 @@ var scl = 30;
 var food;
 var obstacle;
 var obstacle1;
-var obstacle2
+var obstacle2;
 var obstacle3;
 var playfieldW = 600;
 var playfieldH = 640;
