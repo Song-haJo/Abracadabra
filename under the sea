@@ -68,10 +68,10 @@ function draw() {
   }
   else if(check == 'End'){
     image(end,50,50,500,500);
-    fill(0);
+    /*fill(0);
     rect(65,610,30,40);
     fill(255);
-    text(count+1, 70,625);
+    text(count+1, 70,625);*/
     if(mouseX>143&&mouseX<298&&mouseY>452&&mouseY<484){
       if(mouseIsPressed){
         count=0;
@@ -270,7 +270,11 @@ function scoreboard() {
   fill(255);
   text("Score: ", 10, 625);
   text("Highscore: ", 450, 625);
-  text(s.score, 70, 625);
+  //text(s.score, 70, 625);
+  fill(0);
+  rect(65,610,30,40);
+  fill(255);
+  text(count+1, 70,625);
   text(s.highscore, 540, 625);
 }
 
