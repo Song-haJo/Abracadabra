@@ -106,12 +106,12 @@
             <tr>
                 <td align="center">좌</td>
                 <td align="center">좌측</td>
-                <td align="center">손등이 보이는 상태로 손가락 끝이 왼쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256106-72e3e64a-77e8-4a1e-9f6a-e8fb9a3dccac.png"/></td>
+                <td align="center">손등이 보이는 상태로 손가락 끝이 오른쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256106-72e3e64a-77e8-4a1e-9f6a-e8fb9a3dccac.png"/></td>
             </tr>
             <tr>
                 <td align="center">우</td>
                 <td align="center">우측</td>
-                <td align="center">손바닥이 보이는 상태로 손가락 끝이 오른쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256768-f8b3ccb0-2155-40ee-925c-81be35ec8ec4.png"/></td>
+                <td align="center">손바닥이 보이는 상태로 손가락 끝이 왼쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256768-f8b3ccb0-2155-40ee-925c-81be35ec8ec4.png"/></td>
             </tr>
         </table>
         <h4 align="center">&lt;손 모양 사진&gt;</h4>
