@@ -173,10 +173,17 @@
 [5] A. Lamba, "Introduction to ML⁵.js - A Beginner’s Friendly Machine Learning for the Web." Towards Data Science - Medium. https://towardsdatascience.com/introduction-to-ml5-js-3fe51d6a4661 (accessed May 17, 2022)
 
 [6] The Coding Train. https://thecodingtrain.com/ (accessed May 17, 2022)
+    
     ### 6.1. 이미지 출처
+    
     [햄버거]Hugolacasse. Hamburger Clip Art Vector Image. Accessed: Apr. 22, 2023. Available: https://www.vectorstock.com/royalty-free-vector/hamburger-clip-art-vector-21213147
+    
     [게]PngEgg. Crab.png. Accessed: Apr. 22, 2023. Available: https://www.pngegg.com/en/png-wmnli
+    
     [상어]Stephanie Wauters. Shark. (Sep. 10, 2014). Accessed: Apr. 22, 2023. Available: https://thenounproject.com/icon/shark-73318/
+    
     [게임 플레이 페이지 배경]Buddy_Nath. Underwater. Accessed: Apr. 22, 2023. Available: https://pixabay.com/illustrations/underwater-sea-ocean-plankton-blue-2615376/
+    
     [메인 페이지 배경]Shining. Inside Sea. Accessed: Apr. 22, 2023. Available: http://sketchpan.com/mypan/?id=il575952
+    
     [묘비석]SeekPng. Tombstone Sprite 002 - Tombstone Png Sprite. Accessed: Apr. 22, 2023. Available: https://www.seekpng.com/ipng/u2r5u2e6r5r5y3e6_tombstone-sprite-002-tombstone-png-sprite/
