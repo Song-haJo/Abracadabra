@@ -187,3 +187,5 @@
 [메인 페이지 배경] Shining. Inside Sea. Accessed: Apr. 22, 2023. Available: http://sketchpan.com/mypan/?id=il575952
     
 [묘비석] SeekPng. Tombstone Sprite 002 - Tombstone Png Sprite. Accessed: Apr. 22, 2023. Available: https://www.seekpng.com/ipng/u2r5u2e6r5r5y3e6_tombstone-sprite-002-tombstone-png-sprite/
+    
+[안내판] Pmoralg Go Tz Notice Board Clipart. Notice Board. Accessed: Apr. 22, 2023. Available: https://ar.javamem.com/pictures/pmoralg-go-tz-notice-board-clipart or https://spng.hippopng.com/20200215/hrs/transparent-scroll-beige-wood-tubes-pancartestubes-etiquettesvectorpngclipar5e79fb38213995.3971900415850524721361.jpg
