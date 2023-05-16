@@ -1,3 +1,8 @@
+p5 . disableFriendlyErrors  =  true ;
+let handpose;
+let video;
+let predictions = [];
+
 var s;
 var scl = 30;
 var food;
@@ -8,96 +13,115 @@ var obstacle3;
 var playfieldW = 600;
 var playfieldH = 640;
 var check = 'start';
-let startpg, endpg, scorepg;
-var count=1;
+let scorepg;
+var count=0;
 var d1
 
-let bgPic, crab, shark, burger;
+let bgPic, crab, shark, burger, how, end;
+let startbg;
 let bgUrl = "https://cdn.pixabay.com/photo/2017/08/09/18/23/underwater-2615376_960_720.jpg";
 
 function preload() {
   bgPic = loadImage(bgUrl);
+  startbg = loadImage("startbg6.png");
   shark = loadImage("shark.png");
   crab = loadImage("crab.png");
   burger = loadImage("burger.png");
+  how = loadImage("how.png");
+  end = loadImage("gravestone.png")
 }
 
 function setup() {
   createCanvas(playfieldW, playfieldH);
-  startpg = createGraphics(playfieldW, playfieldH);
-  endpg = createGraphics(playfieldW,playfieldH);
+  video = createCapture(VIDEO);
+  video.position(600,-50);
+  video.size(350,350);
+  handpose = ml5.handpose(video);
+  handpose.on("predict", gotResult);
   scorepg = createGraphics(600,40);
-  //background(51);
-  //image(bgPic, 0, 0);
   s = new Snake();
-  frameRate (10);
+  frameRate (8);
   foodLocatrion(); 
   ObstacleLocatrion();
-  textFont("Georgia");
+  textFont("Helvetica");
 }
+
+function gotResult(results){
+  predictions = results;
+}
+
 function draw() {
   if(check == 'start'){
-    image(startpg, 0, 0);
-    fill(255);
-    for(var i = 0; i < 15 ; i++){
-      for(var j = 0; j < 16 ; j++){
-        rect(0+40*i,0+40*j,40,40);
+    image(startbg, 0, 0,600,640);
+    if(mouseX>350&&mouseX<570&&mouseY>246&&mouseY<295){
+      if(mouseIsPressed){
+        count=0;
+        check = 'playing';
       }
     }
-    fill('red');
-    textSize(80);
-    text("Snake Game",80,240);
-    textSize(56);
-    text("Press SPACE to start",42,520);
+    if(mouseX>350&&mouseX<570&&mouseY>330&&mouseY<380){
+      if(mouseIsPressed){
+        count=0;
+        check = 'How';
+      }
+    }
   }
   else if(check == 'End'){
-    endpg.background(0);
-    image(endpg,0,0);
-    fill('red');
-    textSize(56);
-    text("Game Over",160,320);
-    textSize(40);
-    text("Score: ", 160, 400);
-    text(count+1, 400, 400);
+    image(end,50,50,500,500);
+    /*fill(0);
+    rect(65,610,30,40);
+    fill(255);
+    text(count+1, 70,625);*/
+    if(mouseX>143&&mouseX<298&&mouseY>452&&mouseY<484){
+      if(mouseIsPressed){
+        count=0;
+        check = 'start';
+      }
+    }
+    if(mouseX>315&&mouseX<469&&mouseY>452&&mouseY<484){
+      if(mouseIsPressed){
+        count=0;
+        check = 'playing';
+      }
+    }
   }
   else if(check == 'playing'){
-    //background(51);
+    drawKeypoints();
     image(bgPic, 0, 0,600,640);
     if (s.eatf(food)){ foodLocatrion(); }
     if (s.eato(obstacle)) { ObstacleLocatrion(); }
     s.death(); 
     s.update(); 
     s.show(); 
-    //fill (255,0,100); 
-    //ellipse(food.x,food.y, scl, scl);
     image(burger, food.x, food.y, scl, scl);
-    //fill (0,255,0); 
-    //ellipse(obstacle.x,obstacle.y, scl, scl);
     image(shark, obstacle.x, obstacle.y, scl, scl);
     scoreboard(); 
     if(count ==5)
       ObstacleLocatrion1();
     if(count >5){
     if (s.eato(obstacle1)) { ObstacleLocatrion1(); }
-    //fill (0,255,0); 
-    //ellipse(obstacle1.x,obstacle1.y, scl, scl);
       image(shark, obstacle1.x, obstacle1.y, scl, scl);
     }
     if(count ==10)
       ObstacleLocatrion2();
     if(count >10){
     if (s.eato(obstacle2)) { ObstacleLocatrion2(); }
-    //fill (0,255,0); 
-    //ellipse(obstacle2.x,obstacle2.y, scl, scl);
       image(shark, obstacle2.x, obstacle2.y, scl, scl);
     }
     if(count ==20)
       ObstacleLocatrion3();
     if(count >20){
     if (s.eato(obstacle3)) { ObstacleLocatrion3(); }
-    //fill (0,255,0); 
-    //ellipse(obstacle3.x,obstacle3.y, scl, scl);
       image(shark, obstacle3.x, obstacle3.y, scl, scl);
+    }
+  }
+  else if(check == 'How'){
+    image(how, 0, 0,600,640);
+    if(mouseX>313&&mouseX<480&&mouseY>398&&mouseY<442){
+      if(mouseIsPressed){
+        count=0;
+        check = 'playing';
+      }
     }
   }
 }
@@ -246,14 +270,18 @@ function scoreboard() {
   fill(255);
   text("Score: ", 10, 625);
   text("Highscore: ", 450, 625);
-  text(s.score, 70, 625);
+  //text(s.score, 70, 625);
+  fill(0);
+  rect(65,610,30,40);
+  fill(255);
+  text(count+1, 70,625);
   text(s.highscore, 540, 625);
 }
 
 function Snake() {
-  this.x =0; // 시작 좌표값이 사각형과는 다르게 10 이 되어야 기존 사각형에서 0,0 이던 값에서 출발한다. 아닐 경우 원이 잘려서 시작해서 픽셀이 깨져서 나온다.
-  this.y =0; // 이하동문
-  this.xspeed = 1;
+  this.x = 300; 
+  this.y = 300;
+  this.xspeed = 0;
   this.yspeed = 0;
   this.total = 0;
   this.tail = [];
@@ -319,13 +347,15 @@ function Snake() {
     image(crab, this.x, this.y, scl, scl);  
   }
   this.reset = function(){
-    this.x = 0;
-    this.y = 0;
+    this.x = 300;
+    this.y = 300;
     this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
     this.score = 1;
     this.tail = [];
+    foodLocatrion(); 
+    ObstacleLocatrion();
     check = 'End';
   }
 }
@@ -346,5 +376,21 @@ function keyPressed() { //키보드 인식 , reset 키
       foodLocatrion();
       ObstacleLocatrion();
     }
+  }
+}
+function drawKeypoints() {
+  for (let i = 0; i < predictions.length; i += 1) {
+    const prediction = predictions[i];
+    const k20 = prediction.landmarks[20];
+    const k4 = prediction.landmarks[4];
+    const k0 = prediction.landmarks[0];
+    if(k4[0]>k0[0] && k4[1]<k0[1] && k20[1]<k4[1])
+      s.dir(0, -1);
+    else if(k4[0]>k0[0] && k4[1]>k0[1])
+      s.dir(0, 1);
+    else if(k4[0]<k0[0] && k4[1]<k0[1])
+      s.dir (1, 0);
+    else if(k4[0]>k0[0] && k4[1]<k0[1] && k20[1]>k4[1])
+      s.dir (-1, 0);
   }
 }

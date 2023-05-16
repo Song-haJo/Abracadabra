@@ -1,9 +1,13 @@
+let handpose;
+let video;
+let predictions = [];
+
 var s;
 var scl = 30;
 var food;
 var obstacle;
 var obstacle1;
-var obstacle2;
+var obstacle2
 var obstacle3;
 var playfieldW = 600;
 var playfieldH = 640;
@@ -24,17 +28,27 @@ function preload() {
 
 function setup() {
   createCanvas(playfieldW, playfieldH);
+  video = createCapture(VIDEO);
+  video.position(600,-50);
+  video.size(350,350);
+  handpose = ml5.handpose(video);
+  handpose.on("predict", gotResult);
   startpg = createGraphics(playfieldW, playfieldH);
   endpg = createGraphics(playfieldW,playfieldH);
   scorepg = createGraphics(600,40);
   //background(51);
   //image(bgPic, 0, 0);
   s = new Snake();
-  frameRate (10);
+  frameRate (5);
   foodLocatrion(); 
   ObstacleLocatrion();
   textFont("Georgia");
 }
+
+function gotResult(results){
+  predictions = results;
+}
+
 function draw() {
   if(check == 'start'){
     image(startpg, 0, 0);
@@ -61,6 +75,7 @@ function draw() {
     text(count+1, 400, 400);
   }
   else if(check == 'playing'){
+    drawKeypoints();
     //background(51);
     image(bgPic, 0, 0,600,640);
     if (s.eatf(food)){ foodLocatrion(); }
@@ -319,8 +334,8 @@ function Snake() {
     image(crab, this.x, this.y, scl, scl);  
   }
   this.reset = function(){
-    this.x = 0;
-    this.y = 0;
+    this.x = 300;
+    this.y = 300;
     this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
@@ -346,5 +361,21 @@ function keyPressed() { //키보드 인식 , reset 키
       foodLocatrion();
       ObstacleLocatrion();
     }
+  }
+}
+function drawKeypoints() {
+  for (let i = 0; i < predictions.length; i += 1) {
+    const prediction = predictions[i];
+    const k20 = prediction.landmarks[20];
+    const k4 = prediction.landmarks[4];
+    const k0 = prediction.landmarks[0];
+    if(k4[0]>k0[0] && k4[1]<k0[1] && k20[1]<k4[1])
+      s.dir(0, -1);
+    else if(k4[0]>k0[0] && k4[1]>k0[1])
+      s.dir(0, 1);
+    else if(k4[0]<k0[0] && k4[1]<k0[1])
+      s.dir (1, 0);
+    else if(k4[0]>k0[0] && k4[1]<k0[1] && k20[1]>k4[1])
+      s.dir (-1, 0);
   }
 }

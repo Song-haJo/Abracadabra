@@ -106,12 +106,12 @@
             <tr>
                 <td align="center">좌</td>
                 <td align="center">좌측</td>
-                <td align="center">손등이 보이는 상태로 손가락 끝이 왼쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256106-72e3e64a-77e8-4a1e-9f6a-e8fb9a3dccac.png"/></td>
+                <td align="center">손등이 보이는 상태로 손가락 끝이 오른쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256106-72e3e64a-77e8-4a1e-9f6a-e8fb9a3dccac.png"/></td>
             </tr>
             <tr>
                 <td align="center">우</td>
                 <td align="center">우측</td>
-                <td align="center">손바닥이 보이는 상태로 손가락 끝이 오른쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256768-f8b3ccb0-2155-40ee-925c-81be35ec8ec4.png"/></td>
+                <td align="center">손바닥이 보이는 상태로 손가락 끝이 왼쪽을 향한다.<br/><img width="195px" height="145px" src="https://user-images.githubusercontent.com/102509603/169256768-f8b3ccb0-2155-40ee-925c-81be35ec8ec4.png"/></td>
             </tr>
         </table>
         <h4 align="center">&lt;손 모양 사진&gt;</h4>
@@ -173,3 +173,19 @@
 [5] A. Lamba, "Introduction to ML⁵.js - A Beginner’s Friendly Machine Learning for the Web." Towards Data Science - Medium. https://towardsdatascience.com/introduction-to-ml5-js-3fe51d6a4661 (accessed May 17, 2022)
 
 [6] The Coding Train. https://thecodingtrain.com/ (accessed May 17, 2022)
+    
+### 6.1. 이미지 출처
+    
+[햄버거] Hugolacasse. Hamburger Clip Art Vector Image. Accessed: Apr. 22, 2023. Available: https://www.vectorstock.com/royalty-free-vector/hamburger-clip-art-vector-21213147
+  
+[게] PngEgg. Crab.png. Accessed: Apr. 22, 2023. Available: https://www.pngegg.com/en/png-wmnli
+    
+[상어] Stephanie Wauters. Shark. (Sep. 10, 2014). Accessed: Apr. 22, 2023. Available: https://thenounproject.com/icon/shark-73318/
+    
+[게임 플레이 페이지 배경] Buddy_Nath. Underwater. Accessed: Apr. 22, 2023. Available: https://pixabay.com/illustrations/underwater-sea-ocean-plankton-blue-2615376/
+    
+[메인 페이지 배경] Shining. Inside Sea. Accessed: Apr. 22, 2023. Available: http://sketchpan.com/mypan/?id=il575952
+    
+[묘비석] SeekPng. Tombstone Sprite 002 - Tombstone Png Sprite. Accessed: Apr. 22, 2023. Available: https://www.seekpng.com/ipng/u2r5u2e6r5r5y3e6_tombstone-sprite-002-tombstone-png-sprite/
+    
+[안내판] Pmoralg Go Tz Notice Board Clipart. Notice Board. Accessed: Apr. 22, 2023. Available: https://ar.javamem.com/pictures/pmoralg-go-tz-notice-board-clipart or https://spng.hippopng.com/20200215/hrs/transparent-scroll-beige-wood-tubes-pancartestubes-etiquettesvectorpngclipar5e79fb38213995.3971900415850524721361.jpg
